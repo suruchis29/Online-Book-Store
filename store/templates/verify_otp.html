@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">
+    <div class="container h-full p-10">
+      <div class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+        <div class="w-full">
+          <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+            <div class="g-0 lg:flex lg:flex-wrap">
+              <div class="px-4 md:px-0 lg:w-6/12">
+                <div class="md:mx-6 md:p-12">
+                  <div class="text-center">
+                    <img class="mx-auto w-48" src="{% static 'assets/logo.png' %}" alt="logo" />
+                    <h4 class="mb-12 mt-1 pb-1 text-xl font-semibold">
+                      We are The BookWorm
+                    </h4>
+                  </div>
+  
+                  <form method="post">
+                    {% csrf_token %}
+                    <p class="mb-4 text-l font-semibold">Please enter the 6-digit code sent to your email.</p>
+                    
+                    {% if messages %}
+                        <div class="mb-4">
+                            {% for message in messages %}
+                                <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700{% elif message.tags == 'error' %}bg-red-100 text-red-700{% endif %}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+  
+                    <div class="relative mb-4" data-te-input-wrapper-init>
+                      <input
+                        type="text"
+                        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        name="otp"
+                        placeholder="Enter OTP"
+                        required />
+                    </div>
+  
+                    <div class="mb-12 pb-1 pt-1 text-center">
+                      <button
+                        class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] bg-gradient-to-b from-green-200 to-blue-500"
+                        type="submit"
+                        data-te-ripple-init
+                        data-te-ripple-color="light">
+                        Verify Code
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+  
+              <div class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none bg-gradient-to-b from-green-200 to-blue-500">
+                <div class="px-4 py-6 text-white md:mx-6 md:p-12">
+                  <h4 class="text-black text-4xl my-4">
+                    Secure Your Account
+                  </h4>
+                  <p class="text-black inline-block leading-relaxed hover:text-black hover:border-black">
+                    We've sent a one-time code to your email to ensure it's you. This adds an extra layer of security to protect your account.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}
